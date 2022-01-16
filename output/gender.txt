@@ -1,0 +1,36 @@
+ARG	46	25	33.0	10.0	96.0	47	61.0	59	57	92.0	68.0	35	29	60.0	IND	52.0	39.0	91.0	68	49.0	65.0	43.0	41.0	0.0	55	2.0	84.0	18.0	27.0	35.0	80.0	89.0	14.0	unknow	75	20.0	56	63.0	13.0	66	29.0	17.0	3.0	24.0	37.0	17	66.0	59.0	30.0	85.0	52	49	55.0	87.0	11	62	6.0	48.0	21	22.0	46.0	41	31.0	45.0	79.0	47.0	77.0	64.0	37	40.0	54.0	82.0	58.0	28.0	31	Female	69.0	16.0	21.0	23.0	86.0	81.0	42	7.0	72.0	69	1.0	51.0	38.0	53.0	26.0	74.0	73	13	32	15.0	56.0	Male	50.0	42.0	44.0	Maria	51	62.0	50	34.0	44	70.0	93.0	unknown	57.0	60	25.0	32.0	22	81	71.0	19.0	Na	36.0
+AUS	O	U	Male	Female	unknown	Other
+BOL	unkown	unknown	Female	Male
+BRA	40.0	33.0	FemaleMale	Feminino	61.0	63.0	FemaleFemale	29.0	28.0	68.0	Male?	90.0	56.0	Male	unkown	50.0	42.0	Female	52.0	69.0	39.0	37.0	Famale	49.0	21.0	23.0	Unknow	59.0	30.0	Masculino	FF	11.0	unknown	57.0	I	35.0	25.0	32.0	48.0	22.0	unknow	MaleMale	46.0	45.0	79.0	36.0
+CAN	Unknown	Refused	Male	U	Female	Missing	unknown	Not provided
+CHL	unknown	Female	Femele	Male
+COL	Masculino	Male	Female	Femenino	unknown	Hombre	Mujer	nan	Male0
+DEU	10.0	femle	Human	12.0	13.0	Unkown	28.0	17.0	15.0	Male	50.0	unkown	44.0	Female	3.0	37.0	66.0	59.0	4.0	Unknown	unknown	9.0	35.0	32.0	6.0	48.0	1.0	51.0	22.0	38.0	46.0	26.0
+GRC	Male	Female	unknown	not provided	A
+IND	46	25	10.0	24	Transgender	61.0	85	59	57	14	20	35	unknwon	29	60.0	52.0	49.0	83	58	23	54	80.0	M.	FFemale	20.0	6	13.0	29.0	65	74	38	76	24.0	17	34	59.0	43	82	Unknown	48	52	49	27	11	62	21	O	41	45.0	47.0	67	64.0	7	-	37	40.0	54.0	53	64	28	31	40	Female	69.0	Others	21.0	63	26	42	15	79	FemaleeMaleale	51.0	38.0	61	Maleale	26.0	Fm	4	33	Unkown	45	Male	42.0	51	44.0	71	50	84	36	34.0	44	70.0	unknown	19	3	60	73.0	22	18	nan	36.0
+IDN	unknown	Female	Perempuan	Male
+IRL	M	Make	Male	U	Female	F	unknown	not provided	Not provided
+ISR	unknown	Female	Male
+ITA	88.0	54.0	33.0	94.0	20.0	82.0	61.0	13.0	28.0	17.0	Male	44.0	Female	24.0	52.0	37.0	16.0	Famale	21.0	23.0	43.0	30.0	14 days	Maschio	FEMALEemale	Unknown	84.0	18.0	4.0	27.0	unknown	57.0	Unkwon	73.0	35.0	80.0	25.0	72.0	32.0	14.0	unknow	M	22.0	71.0	19.0	53.0	31.0	Femmina	nan	Mlae	26.0	Male,
+JPN	7	46	33	37	24	10	56	32	59	64	28	2	65	20	45	unknwon	31	29	40	Male	51	Female	71	8	17	34	58	26	44	36	48	1	54	15	unknown	19	49	52	27	60	11	62	72	21	22	61	18	70	30
+KEN	?	Male	unkown	Female	unknown	nan
+KWT	unknown	Female	Femal	Male
+LAO	Female	Male
+MWI	unknown	Female	Male
+MYS	Male	Female	16	unknown	Feamle
+NPL	unknown	Female	23	Male
+NLD	unknown	Female	O	Male
+NZL	unknown	Female	Male
+NOR	unknown	Female	Male
+PAK	Femlae	unknown	Female	Male
+PER	Masculino	Male	Female	Femenino	unknown	nan
+PHL	unknown	Female	Male
+POL	46	-	Male.	54.0	73	59	67.0	Famel	68.0	35	29	Male	39	44.0	Female	71	76	24.0	K	65.0	63	66.0	unFnown	30.0	43	Femaleobieta	83.0	19	unknown	5.0	unknow	61	Fame	74.0	female.
+PRT	unknown	Female	Male
+ROU	22.0	Unknown	Male	Female	unknown	Famale	Unkown	28.0
+RUS	unknown	Female	Не установлено	Male
+SAU	unknown	Female	Male
+ZAF	Unknown	U	Male	Female	F	unknown	Maleale	Unkown	female
+ESP	7	46	37	40.0	73	U	10.0	9	10	Human	6	47	32	59	78	64	77	17.0	5	28	2	35	56.0	31	38	Male	50.0	51	3.0	Female	24.0	71	39.0	76	75.0	Famale	8.0	91	male	63	50	female	97	58	43	12	44	82	26	23	84	48	42	1	H	54	unknown	49	57.0	7.0	3	79	60	11	35.0	62	72	95	unknow	51.0	22	81	19.0	31.0	80	67
+TUR	unknown	Female	Male
+USA	25	Mae	declined to answer	OTHER	33.0	24	Transgender	47	61.0	12.0	59	57	68.0	14	Unknown / Not Stated	unknwon	29	60.0	52.0	39.0	68	49.0	8.0	65.0	Unk.	43.0	41.0	0.0	55	23	84.0	18.0	M>F	27.0	54	22 months	UNKNOWN / NOT STATED	35.0	80.0	14.0	unknow	21 months	FeMale	decline	unknown/not stated	Mlae	Femlae	unknow/not stated	Hermaphrodite	U	9	20.0	Unknown/Not Reported	63.0	13.0	11 months	29.0	Ambiguous	Y	17.0	5	65	Unknown/not stated	0.00	3.0	24.0	Fema;e	37.0	transsexual	male	34	66.0	59.0	30.0	43	Unknown	3 months	4.0	48	83.0	52	49	ND	55.0	UNK	9.0	demale	11	Not applicable	6.0	48.0	22.0	hermaphrodite	46.0	O	F	41	31.0	45.0	Declined to answer	47.0	30	77.0	64.0	0	N	40.0	54.0	82.0	58.0	67.0	53	Femal	64	28.0	78	28	31	unkown	Female	69.0	Non-binary	75.0	16.0	21.0	N/a	23.0	non-binary	63	other	26	81.0	11.0	42	15	7.0	5.0	9 months	72.0	69	1.0	51.0	38.0	missing	53.0	Unknown / not stated	26.0	74.0	Not Listed	Other	33	13	Human	16	Unkown	Femle	non_binary	15.0	56.0	45	unknown / not stated	Male	42.0	50.0	44.0	51	1/0/1900	76.0	62.0	50	female	?	34.0	44	36	70.0	93.0	unknown	19	57.0	73.0	25.0	32.0	22	71.0	19.0	18	Unk	nan	Na	36.0
