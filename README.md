@@ -2,6 +2,8 @@
 
 This code summarises data from GISAID by epiweek
 
+[![tests](https://github.com/globaldothealth/covid19-variants-summary/actions/workflows/tests.yml/badge.svg)](https://github.com/globaldothealth/covid19-variants-summary/actions/workflows/tests.yml)
+
 ## Requirements
 
 Python 3.6 or later.
