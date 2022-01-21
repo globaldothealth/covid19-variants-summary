@@ -1,4 +1,5 @@
 import json
+import argparse
 import datetime
 from pathlib import Path
 
@@ -10,9 +11,9 @@ METADATA = "gisaid/metadata.tsv"
 COUNTRIES = "data/countries.json"
 
 # -> output
-COMPLETENESS = "output/completeness.csv"
-GENDER = "output/gender.txt"
-WEEKLY = "output/weekly.csv"
+COMPLETENESS = "completeness.csv"
+GENDER = "gender.txt"
+WEEKLY = "weekly.csv"
 
 # other constants
 VARIANTS = ["Omicron", "Delta"]
@@ -76,6 +77,15 @@ def get_country(location):
     return COUNTRIES_MAP.get(country_name)
 
 
+def get_location(location):
+    location = location.split("/")
+    country_name = location[1].strip()
+    if len(location) == 3:
+        return COUNTRIES_MAP.get(country_name), location[2].strip()
+    else:
+        return COUNTRIES_MAP.get(country_name), None
+
+
 def is_float(n):
     try:
         float(n)
@@ -117,7 +127,7 @@ def completeness(df, country):
 
 def read_metadata(metadata):
     _(f"Read metadata < {metadata}")
-    return pd.read_csv(METADATA, dtype=str, delimiter="\t")
+    return pd.read_csv(metadata, dtype=str, delimiter="\t")
 
 
 def filter_human_hosts(df):
@@ -125,13 +135,30 @@ def filter_human_hosts(df):
     return df[df.Host == "Human"]
 
 
-def filter_countries(df):
-    _("Filter for countries under observation")
-    df["Country"] = df.Location.map(get_country)
-    return df[df.Country.isin(COUNTRIES_MAP.values())]
+def parse_location(df):
+    _(f"Parse location into country and region {len(df)}")
+    # df[["Country", "Region"]] = pd.DataFrame(
+    #     [get_location(item.Location) for item in df.itertuples()]
+    # ^^ NOTE: This gives results that differ from the old country-only code!
+    countries_regions = [get_location(item.Location) for item in df.itertuples()]
+    df["Country"] = [x[0] for x in countries_regions]
+    df["Region"] = [x[1] for x in countries_regions]
+    return df
 
 
-# check_collection_before_submission(df)
+def filter_location(df, country=None, region=None):
+    _(f"Filter for countries and regions under observation {len(df)}")
+    print(country, region)
+    if region is not None and country is None:
+        raise ValueError(
+            "If you specify region, country ISO3 code has to be specified as well"
+        )
+    if country is None:
+        return df[df.Country.isin(COUNTRIES_MAP.values())]
+    if region is None:
+        return df[df.Country == country]
+    else:
+        return df[df.Region.isin(region.split(",")) & df.Country == country]
 
 
 def calculate_epiweeks(df):
@@ -143,9 +170,7 @@ def calculate_epiweeks(df):
 def calculate_completeness(df):
     _("Calculate completeness")
     return (
-        pd.DataFrame(
-            [completeness(df, c) for c in COUNTRIES_MAP.values()]
-        )
+        pd.DataFrame([completeness(df, c) for c in COUNTRIES_MAP.values()])
         .reindex(columns=COMP_COLS)
         .set_index("Country")
     )
@@ -154,7 +179,7 @@ def calculate_completeness(df):
 def gender_sets(df):
     _("Getting genders for each country")
     return [
-        c + "\t" + "\t".join(set(df[df.Country == c].Gender.map(str)))
+        c + "\t" + "\t".join(sorted(set(df[df.Country == c].Gender.map(str))))
         for c in COUNTRIES_MAP.values()
     ]
 
@@ -162,6 +187,7 @@ def gender_sets(df):
 def is_variant(variant):
     def func(v):
         return f"VOC {variant}" in v if isinstance(v, str) else False
+
     return func
 
 
@@ -181,19 +207,42 @@ def aggregate(df):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-i",
+        "--input",
+        help="Input metadata file to use (default: gisaid/metadata.tsv)",
+        default="gisaid/metadata.tsv",
+    )
+    parser.add_argument(
+        "-o",
+        "--output",
+        help="Output folder to use (default: output)",
+        default="output"
+    )
+    parser.add_argument(
+        "--region", help="Region to filter for, if specified, must have --country"
+    )
+    parser.add_argument("--country", help="ISO3 code of country to limit results to")
+    args = parser.parse_args()
+    OUTPUT = Path(args.output)
+    if not OUTPUT.exists():
+        OUTPUT.mkdir()
+
     df = (
-        read_metadata(METADATA)
+        read_metadata(args.input)
         .pipe(filter_human_hosts)
-        .pipe(filter_countries)
+        .pipe(parse_location)
+        .pipe(filter_location, country=args.country, region=args.region)
         .pipe(check_collection_before_submission)
     )
-    calculate_completeness(df).to_csv(COMPLETENESS)
-    Path(GENDER).write_text("\n".join(gender_sets(df)))
+    calculate_completeness(df).to_csv(OUTPUT / COMPLETENESS)
+    (OUTPUT / GENDER).write_text("\n".join(gender_sets(df)))
     # fmt: off
     (
         df
         .pipe(calculate_epiweeks)
         .pipe(add_variant_columns)
         .pipe(aggregate)
-    ).to_csv(WEEKLY)
+    ).to_csv(OUTPUT / WEEKLY)
     # fmt: on

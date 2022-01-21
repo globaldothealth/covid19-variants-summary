@@ -7,7 +7,7 @@ TODAY = datetime.date.today()
 
 def virus_name():
     while True:
-        yield f"hCoV-19/England/FAKE-{random.choice(range(200000, 300000))}/2021"
+        yield f"hCoV-19/Argentina/FAKE-{random.choice(range(200000, 300000))}/2021"
 
 
 def accession_id():
@@ -50,7 +50,7 @@ COLS = [
     ("Type", "betacoronavirus"),
     ("Accession ID", accession_id()),
     ("Collection date", from_date(datetime.date(2021, 6, 1))),
-    ("Location", "Europe / United Kingdom / England"),
+    ("Location", "South America / Argentina / Buenos Aires"),
     ("Additional location information", ""),
     ("Sequence length", from_range(29000, 30000)),
     ("Host", pick(["Human", "Mouse"], [90, 10])),
