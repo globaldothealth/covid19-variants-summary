@@ -9,6 +9,7 @@ from epiweeks import Week
 # <- input
 METADATA = "gisaid/metadata.tsv"
 COUNTRIES = "data/countries.json"
+VAX = "data/vaccinations.csv"
 
 # -> output
 COMPLETENESS = "completeness.csv"
@@ -130,6 +131,30 @@ def read_metadata(metadata):
     return pd.read_csv(metadata, dtype=str, delimiter="\t")
 
 
+def read_vax(file):
+    _(f"Read vaccination data < {file}")
+    data = []
+    iso_weeks = set()
+    df = pd.read_csv(file).sort_values("date", ascending=False)
+    df["week"] = df.date.map(to_epiweek)
+    for v in df.itertuples():
+        if (v.iso_code, v.week) not in iso_weeks:
+            data.append(
+                (
+                    v.iso_code,
+                    v.week,
+                    v.people_vaccinated,
+                    v.people_fully_vaccinated,
+                    v.total_boosters,
+                )
+            )
+            iso_weeks.add((v.iso_code, v.week))
+    return pd.DataFrame(
+        data=data,
+        columns=["Country", "Week", "Vaccinated", "Fully_vaccinated", "Boosted"],
+    )
+
+
 def filter_human_hosts(df):
     _("Filter for human hosts")
     return df[df.Host == "Human"]
@@ -148,7 +173,6 @@ def parse_location(df):
 
 def filter_location(df, country=None, region=None):
     _(f"Filter for countries and regions under observation {len(df)}")
-    print(country, region)
     if region is not None and country is None:
         raise ValueError(
             "If you specify region, country ISO3 code has to be specified as well"
@@ -206,6 +230,11 @@ def aggregate(df):
     return df.groupby(["Country", "Week"]).agg("sum")
 
 
+def merge_vax(df, vax):
+    _("Merging with vaccination data from OWID")
+    return df.merge(vax, on=["Country", "Week"])
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -218,7 +247,7 @@ if __name__ == "__main__":
         "-o",
         "--output",
         help="Output folder to use (default: output)",
-        default="output"
+        default="output",
     )
     parser.add_argument(
         "--region", help="Region to filter for, if specified, must have --country"
@@ -229,6 +258,7 @@ if __name__ == "__main__":
     if not OUTPUT.exists():
         OUTPUT.mkdir()
 
+    vax = read_vax(VAX)
     df = (
         read_metadata(args.input)
         .pipe(filter_human_hosts)
@@ -244,5 +274,6 @@ if __name__ == "__main__":
         .pipe(calculate_epiweeks)
         .pipe(add_variant_columns)
         .pipe(aggregate)
-    ).to_csv(OUTPUT / WEEKLY)
+        .pipe(merge_vax, vax=vax)
+    ).to_csv(OUTPUT / WEEKLY, index=False)
     # fmt: on
