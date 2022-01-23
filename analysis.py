@@ -15,6 +15,7 @@ VAX = "data/vaccinations.csv"
 COMPLETENESS = "completeness.csv"
 GENDER = "gender.txt"
 WEEKLY = "weekly.csv"
+START_END_DATES = "start_end_dates.csv"
 
 # other constants
 VARIANTS = ["Omicron", "Delta"]
@@ -235,6 +236,43 @@ def merge_vax(df, vax):
     return df.merge(vax, on=["Country", "Week"])
 
 
+def get_start_dates(df, threshold_proportion=0.9):
+    _("Getting start and end dates for variants")
+    df = df.sort_values("Week")
+    # start week is first time variant crossed 90%
+    # end week is last time variant went below 90%
+    for var in VARIANTS:
+        df[f"{var}_prop"] = df[var] / df.Total
+    data = []
+    for country in sorted(set(df.Country)):
+        cdf = df[df.Country == country]
+        above_threshold = {
+            var: cdf[cdf[f"{var}_prop"] >= threshold_proportion] for var in VARIANTS
+        }
+        below_threshold = {
+            var: cdf[cdf[f"{var}_prop"] < threshold_proportion] for var in VARIANTS
+        }
+
+        start_dates = {
+            var: str(above_threshold[var].iloc[0].Week)
+            if not above_threshold[var].empty
+            else None
+            for var in VARIANTS
+        }
+        for var in sorted(VARIANTS):
+            if start_dates[var] is None:
+                end_date = None  # variant never reached threshold
+            else:
+                below_df = below_threshold[var]
+                # end date should be after start date
+                below_df = below_df[below_df.Week.astype(str) > start_dates[var]]
+                end_date = str(below_df.iloc[0].Week) if not below_df.empty else None
+            data.append((country, var, start_dates[var], end_date, threshold_proportion))
+    return pd.DataFrame(
+        data=data, columns=["Country", "Variant", "Start", "End", "Threshold"]
+    )
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -269,11 +307,13 @@ if __name__ == "__main__":
     calculate_completeness(df).to_csv(OUTPUT / COMPLETENESS)
     (OUTPUT / GENDER).write_text("\n".join(gender_sets(df)))
     # fmt: off
-    (
+    weekly = (
         df
         .pipe(calculate_epiweeks)
         .pipe(add_variant_columns)
         .pipe(aggregate)
         .pipe(merge_vax, vax=vax)
-    ).to_csv(OUTPUT / WEEKLY, index=False)
+    )
     # fmt: on
+    weekly.to_csv(OUTPUT / WEEKLY, index=False)
+    get_start_dates(weekly).to_csv(OUTPUT / START_END_DATES, index=False)
