@@ -1,6 +1,7 @@
 gisaid/*
 venv
 .venv
+.ipynb_checkpoints/*
 
 # local vscode settings
 .vscode/
