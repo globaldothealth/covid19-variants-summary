@@ -1,4 +1,5 @@
 import sys
+import math
 import json
 import argparse
 import datetime
@@ -20,6 +21,7 @@ START_END_DATES = "start_end_dates.csv"
 
 # other constants
 VARIANTS = ["Omicron", "Delta"]
+GROUP_BY = ["Country", "Week"]
 
 
 def _(s):
@@ -75,9 +77,18 @@ Total
 )
 
 
-def get_country(location):
-    country_name = location.split("/")[1].strip()
-    return COUNTRIES_MAP.get(country_name)
+def get_age_group(age):
+    age = float(age)
+    d = int(age // 10)
+    if d >= 8:
+        return ">= 80"
+    if d >= 1:
+        return f"{d}0 – {d + 1}0"
+    if age >= 5:
+        return "5 – 10"
+    if age >= 1:
+        return "1 – 5"
+    return "< 1"
 
 
 def get_location(location):
@@ -91,8 +102,7 @@ def get_location(location):
 
 def is_float(n):
     try:
-        float(n)
-        return True
+        return not math.isnan(float(n))
     except ValueError:
         return False
 
@@ -233,10 +243,21 @@ def filter_valid_age(df, enabled=False):
     return df[df["Patient age"].map(is_float)]
 
 
-def aggregate(df):
+def add_age_groups(df, enabled=False):
+    if not enabled:
+        return df
+    _("Add age groups")
+    df["Age_group"] = df["Patient age"].map(get_age_group)
+    return df
+
+
+def aggregate(df, age_groups=False):
     _("Aggregate country data by epiweek")
+    if age_groups:
+        OUTCOLS.append("Age_group")
+        GROUP_BY.append("Age_group")
     df = df[OUTCOLS]
-    return df.groupby(["Country", "Week"]).agg("sum")
+    return df.groupby(GROUP_BY).agg("sum")
 
 
 def merge_vax(df, vax, enabled=True):
@@ -305,18 +326,25 @@ if __name__ == "__main__":
         action="store_true",
     )
     parser.add_argument(
+        "--age-groups", help="Group by age", action="store_true"
+    )
+    parser.add_argument(
         "--region", help="Region to filter for, if specified, must have --country"
     )
     parser.add_argument("--country", help="ISO3 code of country to limit results to")
     args = parser.parse_args()
+
+    enable_valid_age = args.valid_age or args.age_groups
     OUTPUT = Path(args.output)
-    if args.valid_age and not args.country:
+    if enable_valid_age and not args.country:
         print("Filtering by age requires specifying country")
         sys.exit(1)
     if args.country:
         components = [args.country]
-        if args.valid_age:
+        if enable_valid_age:
             components.append("valid-age")
+        if args.age_groups:
+            components.append("group")
         if args.region:
             components.extend(args.region.split(","))
         prefix = "_".join(components) + "_"
@@ -331,7 +359,8 @@ if __name__ == "__main__":
         .pipe(filter_human_hosts)
         .pipe(parse_location)
         .pipe(filter_location, country=args.country, region=args.region)
-        .pipe(filter_valid_age, enabled=args.valid_age)
+        .pipe(filter_valid_age, enabled=enable_valid_age)
+        .pipe(add_age_groups, enabled=args.age_groups)
         .pipe(check_collection_before_submission)
     )
     if args.country is None:
@@ -342,7 +371,7 @@ if __name__ == "__main__":
         df
         .pipe(calculate_epiweeks)
         .pipe(add_variant_columns)
-        .pipe(aggregate)
+        .pipe(aggregate, age_groups=args.age_groups)
         .pipe(merge_vax, vax=VAX, enabled=(not args.country))
     )
     # fmt: on
