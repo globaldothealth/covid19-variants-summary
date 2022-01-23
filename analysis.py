@@ -293,6 +293,16 @@ if __name__ == "__main__":
     parser.add_argument("--country", help="ISO3 code of country to limit results to")
     args = parser.parse_args()
     OUTPUT = Path(args.output)
+    if args.country:
+        components = [args.country]
+        if args.region:
+            components.extend(args.region.split(","))
+        prefix = "_".join(components) + "_"
+        COMPLETENESS = prefix + COMPLETENESS
+        GENDER = prefix + GENDER
+        WEEKLY = prefix + WEEKLY
+        START_END_DATES = prefix + START_END_DATES
+
     if not OUTPUT.exists():
         OUTPUT.mkdir()
 
