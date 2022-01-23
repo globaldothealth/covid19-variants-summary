@@ -1,3 +1,4 @@
+import sys
 import json
 import argparse
 import datetime
@@ -225,15 +226,24 @@ def add_variant_columns(df):
     return df
 
 
+def filter_valid_age(df, enabled=False):
+    if not enabled:
+        return df
+    _("Filter data for entries with valid age")
+    return df[df["Patient age"].map(is_float)]
+
+
 def aggregate(df):
     _("Aggregate country data by epiweek")
     df = df[OUTCOLS]
     return df.groupby(["Country", "Week"]).agg("sum")
 
 
-def merge_vax(df, vax):
+def merge_vax(df, vax, enabled=True):
+    if not enabled:
+        return df
     _("Merging with vaccination data from OWID")
-    return df.merge(vax, on=["Country", "Week"])
+    return df.merge(read_vax(vax), on=["Country", "Week"])
 
 
 def get_start_dates(df, threshold_proportion=0.9):
@@ -267,7 +277,9 @@ def get_start_dates(df, threshold_proportion=0.9):
                 # end date should be after start date
                 below_df = below_df[below_df.Week.astype(str) > start_dates[var]]
                 end_date = str(below_df.iloc[0].Week) if not below_df.empty else None
-            data.append((country, var, start_dates[var], end_date, threshold_proportion))
+            data.append(
+                (country, var, start_dates[var], end_date, threshold_proportion)
+            )
     return pd.DataFrame(
         data=data, columns=["Country", "Variant", "Start", "End", "Threshold"]
     )
@@ -288,42 +300,52 @@ if __name__ == "__main__":
         default="output",
     )
     parser.add_argument(
+        "--valid-age",
+        help="Filter to entries that have valid age",
+        action="store_true",
+    )
+    parser.add_argument(
         "--region", help="Region to filter for, if specified, must have --country"
     )
     parser.add_argument("--country", help="ISO3 code of country to limit results to")
     args = parser.parse_args()
     OUTPUT = Path(args.output)
+    if args.valid_age and not args.country:
+        print("Filtering by age requires specifying country")
+        sys.exit(1)
     if args.country:
         components = [args.country]
+        if args.valid_age:
+            components.append("valid-age")
         if args.region:
             components.extend(args.region.split(","))
         prefix = "_".join(components) + "_"
-        COMPLETENESS = prefix + COMPLETENESS
-        GENDER = prefix + GENDER
+        # other outputs are not presented for country or region
         WEEKLY = prefix + WEEKLY
-        START_END_DATES = prefix + START_END_DATES
 
     if not OUTPUT.exists():
         OUTPUT.mkdir()
 
-    vax = read_vax(VAX)
     df = (
         read_metadata(args.input)
         .pipe(filter_human_hosts)
         .pipe(parse_location)
         .pipe(filter_location, country=args.country, region=args.region)
+        .pipe(filter_valid_age, enabled=args.valid_age)
         .pipe(check_collection_before_submission)
     )
-    calculate_completeness(df).to_csv(OUTPUT / COMPLETENESS)
-    (OUTPUT / GENDER).write_text("\n".join(gender_sets(df)))
+    if args.country is None:
+        calculate_completeness(df).to_csv(OUTPUT / COMPLETENESS)
+        (OUTPUT / GENDER).write_text("\n".join(gender_sets(df)))
     # fmt: off
     weekly = (
         df
         .pipe(calculate_epiweeks)
         .pipe(add_variant_columns)
         .pipe(aggregate)
-        .pipe(merge_vax, vax=vax)
+        .pipe(merge_vax, vax=VAX, enabled=(not args.country))
     )
     # fmt: on
-    weekly.to_csv(OUTPUT / WEEKLY, index=False)
-    get_start_dates(weekly).to_csv(OUTPUT / START_END_DATES, index=False)
+    weekly.to_csv(OUTPUT / WEEKLY, index=bool(args.country))
+    if args.country is None:
+        get_start_dates(weekly).to_csv(OUTPUT / START_END_DATES, index=False)
