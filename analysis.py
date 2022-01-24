@@ -20,7 +20,7 @@ WEEKLY = "weekly.csv"
 START_END_DATES = "start_end_dates.csv"
 
 # other constants
-VARIANTS = ["Omicron", "Delta"]
+VARIANTS = ["Alpha", "Beta", "Delta", "Omicron"]
 GROUP_BY = ["Country", "Week"]
 
 
@@ -65,16 +65,7 @@ GC-Content
 
 COMP_COLS = ["Country", "N"] + COLS
 
-OUTCOLS = w(
-    """
-Country
-Week
-Omicron
-Delta
-Other_variants
-Total
-"""
-)
+OUTCOLS = ["Country", "Week"] + VARIANTS + ["Other_variants", "Total"]
 
 
 def get_age_group(age):
@@ -325,9 +316,7 @@ if __name__ == "__main__":
         help="Filter to entries that have valid age",
         action="store_true",
     )
-    parser.add_argument(
-        "--age-groups", help="Group by age", action="store_true"
-    )
+    parser.add_argument("--age-groups", help="Group by age", action="store_true")
     parser.add_argument(
         "--region", help="Region to filter for, if specified, must have --country"
     )
