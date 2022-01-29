@@ -12,6 +12,7 @@ from epiweeks import Week
 METADATA = "gisaid/metadata.tsv"
 COUNTRIES = "data/countries.json"
 VAX = "data/vaccinations.csv"
+GENDER_MAP = "data/gender.json"
 
 # -> output
 COMPLETENESS = "completeness.csv"
@@ -80,6 +81,34 @@ def get_age_group(age):
     if age >= 1:
         return "1 – 5"
     return "< 1"
+
+
+def gender_mapper(country_code):
+    with open(GENDER_MAP) as fp:
+        data = json.load(fp)
+    if country_code not in data:
+        raise ValueError(f"No gender map for {country_code}")
+    _map = data[country_code]
+    for gender in _map:
+        if isinstance(_map[gender], str):
+            _map[gender] = [gender.lower(), _map[gender].lower()]
+        else:  # list, so add gender name to the alternatives
+            _map[gender] = [gender.lower(), *[x.lower() for x in _map[gender]]]
+    if "Female" not in _map:
+        _map["Female"] = ["female"]
+    if "Male" not in _map:
+        _map["Male"] = ["male"]
+
+    def func(val):
+        if not isinstance(val, str):
+            return None
+        val = val.lower()
+        for gender in _map:
+            if val in _map[gender]:
+                return gender
+        return None
+
+    return func
 
 
 def get_location(location):
@@ -156,6 +185,14 @@ def read_vax(file):
         data=data,
         columns=["Country", "Week", "Vaccinated", "Fully_vaccinated", "Boosted"],
     )
+
+
+def add_gender(df, country=None, drop=True, enabled=True):
+    if country is None or not enabled:
+        return df
+    _("Mapping gender field" + (" and dropping unknowns" if drop else ""))
+    df["Gender"] = df.Gender.map(gender_mapper(country))
+    return df[~pd.isna(df.Gender)] if drop else df
 
 
 def filter_human_hosts(df):
@@ -242,11 +279,14 @@ def add_age_groups(df, enabled=False):
     return df
 
 
-def aggregate(df, age_groups=False):
+def aggregate(df, age_groups=False, gender=False):
     _("Aggregate country data by epiweek")
     if age_groups:
         OUTCOLS.append("Age_group")
         GROUP_BY.append("Age_group")
+    if gender:
+        OUTCOLS.append("Gender")
+        GROUP_BY.append("Gender")
     df = df[OUTCOLS]
     return df.groupby(GROUP_BY).agg("sum")
 
@@ -316,6 +356,11 @@ if __name__ == "__main__":
         help="Filter to entries that have valid age",
         action="store_true",
     )
+    parser.add_argument(
+        "--gender",
+        help="Filter to entries that have valid gender",
+        action="store_true",
+    )
     parser.add_argument("--age-groups", help="Group by age", action="store_true")
     parser.add_argument(
         "--region", help="Region to filter for, if specified, must have --country"
@@ -328,8 +373,13 @@ if __name__ == "__main__":
     if enable_valid_age and not args.country:
         print("Filtering by age requires specifying country")
         sys.exit(1)
+    if args.gender and not args.country:
+        print("Filtering by gender requires specifying country")
+        sys.exit(1)
     if args.country:
         components = [args.country]
+        if args.gender:
+            components.append("gender")
         if enable_valid_age:
             components.append("valid-age")
         if args.age_groups:
@@ -355,15 +405,13 @@ if __name__ == "__main__":
     if args.country is None:
         calculate_completeness(df).to_csv(OUTPUT / COMPLETENESS)
         (OUTPUT / GENDER).write_text("\n".join(gender_sets(df)))
-    # fmt: off
     weekly = (
-        df
+        df.pipe(add_gender, country=args.country, enabled=args.gender)
         .pipe(calculate_epiweeks)
         .pipe(add_variant_columns)
-        .pipe(aggregate, age_groups=args.age_groups)
+        .pipe(aggregate, age_groups=args.age_groups, gender=args.gender)
         .pipe(merge_vax, vax=VAX, enabled=(not args.country))
     )
-    # fmt: on
     weekly.to_csv(OUTPUT / WEEKLY, index=bool(args.country))
     if args.country is None:
         get_start_dates(weekly).to_csv(OUTPUT / START_END_DATES, index=False)
