@@ -1,0 +1,70 @@
+{
+    "AUS": { "Other": "Other" },
+    "BRA": {
+        "Female": ["Famale", "FemaleFemale", "Feminino"],
+        "Male": ["Male?", "MaleMale", "Masculino"]
+    },
+    "CHL": { "Female": "Femele" },
+    "COL": {
+        "Female": ["Femenino", "Mujer"],
+        "Male": ["Hombre", "Male0", "Masculino"]
+    },
+    "DEU": {
+        "Female": "femle"
+    },
+    "IND": {
+        "Female": ["FFemale", "FeM", "FmM."],
+        "Male": "Maleale",
+        "Others": ["O", "Others", "Transgender"]
+    },
+    "IDN": {
+        "Female": "Perempuan"
+    },
+    "IRL": {
+        "Female": "F",
+        "Male": ["M", "Make"]
+    },
+    "ITA": {
+        "Female": ["F", "FEMALEemale", "Famale", "Femmina"],
+        "Male": ["M", "Male,", "Maschio", "Mlae"]
+    },
+    "KWT": {
+        "Female": "Femal"
+    },
+    "NPL": {
+        "Other": "Other"
+    },
+    "NLD": {
+        "Other": "O"
+    },
+    "PAK": {
+        "Female": "Femlae"
+    },
+    "PER": {
+        "Female": "Femenino",
+        "Male": "Masculino"
+    },
+    "POL": {
+        "Female": ["Fame", "Famel", "Femaleobieta", "female."],
+        "Male": "Male."
+    },
+    "ROU": {
+        "Female": "Famale"
+    },
+    "ZAF": {
+        "Female": "F",
+        "Male": ["M", "Maleale"]
+    },
+    "ESP": {
+        "Female": "Famale"
+    },
+    "USA": {
+        "Female": ["F", "Fema;e", "Femal", "Femlae", "Femle", "demale"],
+        "Male": ["Mae", "Mlae", "M"],
+        "Other": [
+            "Ambiguous", "Hermaphrodite", "Non-binary",
+            "Not Listed", "O", "Other",
+            "Transgender", "non_binary", "transsexual"
+        ]
+    }
+}
