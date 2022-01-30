@@ -187,7 +187,7 @@ def read_vax(file):
     )
 
 
-def add_gender(df, country=None, drop=True, enabled=True):
+def map_gender(df, country=None, drop=True, enabled=True):
     if country is None or not enabled:
         return df
     _("Mapping gender field" + (" and dropping unknowns" if drop else ""))
@@ -279,9 +279,9 @@ def add_age_groups(df, enabled=False):
     return df
 
 
-def aggregate(df, age_groups=False, gender=False):
+def aggregate(df, age=False, gender=False):
     _("Aggregate country data by epiweek")
-    if age_groups:
+    if age:
         OUTCOLS.append("Age_group")
         GROUP_BY.append("Age_group")
     if gender:
@@ -352,7 +352,7 @@ if __name__ == "__main__":
         default="output",
     )
     parser.add_argument(
-        "--valid-age",
+        "--age",
         help="Filter to entries that have valid age",
         action="store_true",
     )
@@ -361,16 +361,17 @@ if __name__ == "__main__":
         help="Filter to entries that have valid gender",
         action="store_true",
     )
-    parser.add_argument("--age-groups", help="Group by age", action="store_true")
+    parser.add_argument(
+        "--group", help="Group by age and/or gender", action="store_true"
+    )
     parser.add_argument(
         "--region", help="Region to filter for, if specified, must have --country"
     )
     parser.add_argument("--country", help="ISO3 code of country to limit results to")
     args = parser.parse_args()
 
-    enable_valid_age = args.valid_age or args.age_groups
     OUTPUT = Path(args.output)
-    if enable_valid_age and not args.country:
+    if args.age and not args.country:
         print("Filtering by age requires specifying country")
         sys.exit(1)
     if args.gender and not args.country:
@@ -380,9 +381,9 @@ if __name__ == "__main__":
         components = [args.country]
         if args.gender:
             components.append("gender")
-        if enable_valid_age:
-            components.append("valid-age")
-        if args.age_groups:
+        if args.age:
+            components.append("age")
+        if args.group:
             components.append("group")
         if args.region:
             components.extend(args.region.split(","))
@@ -398,20 +399,29 @@ if __name__ == "__main__":
         .pipe(filter_human_hosts)
         .pipe(parse_location)
         .pipe(filter_location, country=args.country, region=args.region)
-        .pipe(filter_valid_age, enabled=enable_valid_age)
-        .pipe(add_age_groups, enabled=args.age_groups)
+        .pipe(filter_valid_age, enabled=args.age)
+        .pipe(add_age_groups, enabled=(args.age and args.group))
         .pipe(check_collection_before_submission)
     )
     if args.country is None:
         calculate_completeness(df).to_csv(OUTPUT / COMPLETENESS)
         (OUTPUT / GENDER).write_text("\n".join(gender_sets(df)))
     weekly = (
-        df.pipe(add_gender, country=args.country, enabled=args.gender)
+        df.pipe(map_gender, country=args.country, enabled=args.gender)
         .pipe(calculate_epiweeks)
         .pipe(add_variant_columns)
-        .pipe(aggregate, age_groups=args.age_groups, gender=args.gender)
+        .pipe(
+            aggregate,
+            age=(args.age and args.group),
+            gender=(args.gender and args.group),
+        )
         .pipe(merge_vax, vax=VAX, enabled=(not args.country))
     )
-    weekly.to_csv(OUTPUT / WEEKLY, index=bool(args.country))
+    if not args.country:
+        weekly.to_csv(OUTPUT / WEEKLY, index=False)
+    else:
+        if not (OUTPUT / args.country).exists():
+            (OUTPUT / args.country).mkdir()
+        weekly.to_csv(OUTPUT / args.country / WEEKLY, index=True)
     if args.country is None:
         get_start_dates(weekly).to_csv(OUTPUT / START_END_DATES, index=False)
