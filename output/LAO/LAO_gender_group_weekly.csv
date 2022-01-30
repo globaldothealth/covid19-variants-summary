@@ -1,0 +1,15 @@
+Country,Week,Gender,Alpha,Beta,Delta,Omicron,Other_variants,Total
+LAO,202015,Male,0,0,0,0,1,1
+LAO,202109,Male,0,0,0,0,1,1
+LAO,202114,Male,0,0,0,0,2,2
+LAO,202117,Male,0,0,0,0,1,1
+LAO,202119,Male,0,0,0,0,1,1
+LAO,202123,Male,0,0,0,0,1,1
+LAO,202124,Male,0,0,0,0,1,1
+LAO,202125,Female,0,0,0,0,1,1
+LAO,202126,Male,0,0,0,0,2,2
+LAO,202127,Female,0,0,0,0,2,2
+LAO,202128,Female,0,0,0,0,1,1
+LAO,202129,Male,0,0,0,0,1,1
+LAO,202130,Male,0,0,0,0,2,2
+LAO,202131,Female,0,0,0,0,1,1

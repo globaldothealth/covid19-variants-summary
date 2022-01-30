@@ -1,0 +1,16 @@
+Country,Week,Gender,Alpha,Beta,Delta,Omicron,Other_variants,Total
+PRT,202010,Female,0,0,0,0,5,5
+PRT,202010,Male,0,0,0,0,9,9
+PRT,202011,Female,0,0,0,0,7,7
+PRT,202011,Male,0,0,0,0,11,11
+PRT,202012,Female,0,0,0,0,29,29
+PRT,202012,Male,0,0,0,0,23,23
+PRT,202013,Female,0,0,0,0,5,5
+PRT,202013,Male,0,0,0,0,7,7
+PRT,202015,Female,0,0,0,0,2,2
+PRT,202020,Female,0,0,0,0,1,1
+PRT,202021,Male,0,0,0,0,1,1
+PRT,202025,Female,0,0,0,0,1,1
+PRT,202026,Female,0,0,0,0,1,1
+PRT,202136,Male,0,0,1,0,0,1
+PRT,202147,Male,0,0,1,0,0,1
