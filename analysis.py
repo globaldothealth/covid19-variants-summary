@@ -87,8 +87,9 @@ def gender_mapper(country_code):
     with open(GENDER_MAP) as fp:
         data = json.load(fp)
     if country_code not in data:
-        raise ValueError(f"No gender map for {country_code}")
-    _map = data[country_code]
+        _map = {"Female": [], "Male": []}
+    else:
+        _map = data[country_code]
     for gender in _map:
         if isinstance(_map[gender], str):
             _map[gender] = [gender.lower(), _map[gender].lower()]
