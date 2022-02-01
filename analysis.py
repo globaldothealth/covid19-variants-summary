@@ -71,6 +71,8 @@ OUTCOLS = ["Country", "Week"] + VARIANTS + ["Other_variants", "Total"]
 
 def get_age_group(age):
     age = float(age)
+    if math.isnan(age):
+        return None
     d = int(age // 10)
     if d >= 8:
         return ">= 80"
