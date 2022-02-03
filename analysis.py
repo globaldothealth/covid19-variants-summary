@@ -149,6 +149,8 @@ def check_collection_before_submission(df):
 def completeness(df, country):
     country_df = df[df.Country == country]
     N = len(country_df)
+    if N == 0:  # country not present, return zero for everything
+        return dict([(col, 0) for col in COLS] + [("N", 0), ("Country", country)])
     columns = set(COLS) - {"Patient age"}
     comp = {col: 100 * sum(~pd.isna(country_df[col])) / N for col in columns}
     comp.update(
