@@ -3,6 +3,7 @@ import math
 import json
 import argparse
 import datetime
+import contextlib
 from pathlib import Path
 
 import pandas as pd
@@ -64,7 +65,7 @@ GC-Content
 """
 )
 
-COMP_COLS = ["Country", "N"] + COLS
+COMP_COLS = ["Country", "N"] + COLS + ["Patient age lower"]
 
 OUTCOLS = ["Country", "Week"] + VARIANTS + ["Other_variants", "Total"]
 
@@ -83,6 +84,12 @@ def get_age_group(age):
     if age >= 1:
         return "1 – 5"
     return "< 1"
+
+
+def get_age_group_row(row):
+    lower_group = get_age_group(row["Patient age lower"])
+    upper_group = get_age_group(row["Patient age upper"])
+    return lower_group if lower_group == upper_group else ""
 
 
 def gender_mapper(country_code):
@@ -149,17 +156,22 @@ def check_collection_before_submission(df):
 def completeness(df, country):
     country_df = df[df.Country == country]
     N = len(country_df)
+    CCOLS = set(COLS) | {"Patient age lower"}
     if N == 0:  # country not present, return zero for everything
-        return dict([(col, 0) for col in COLS] + [("N", 0), ("Country", country)])
-    columns = set(COLS) - {"Patient age"}
+        return dict([(col, 0) for col in CCOLS] + [("N", 0), ("Country", country)])
+    columns = CCOLS - {"Patient age", "Patient age lower"}
     comp = {col: 100 * sum(~pd.isna(country_df[col])) / N for col in columns}
     comp.update(
         {
             "Patient age": 100 * country_df["Patient age"].map(is_float).sum() / N,
+            "Patient age lower": 100
+            * country_df["Patient age lower"].map(is_float).sum()
+            / N,
             "Country": country_df.iloc[0].Country,
             "N": N,
         }
     )
+    assert comp['Patient age lower'] >= comp['Patient age']
     return comp
 
 
@@ -273,14 +285,16 @@ def filter_valid_age(df, enabled=False):
     if not enabled:
         return df
     _("Filter data for entries with valid age")
-    return df[df["Patient age"].map(is_float)]
+    return df[df["Patient age lower"].map(is_float)]
 
 
 def add_age_groups(df, enabled=False):
     if not enabled:
         return df
     _("Add age groups")
-    df["Age_group"] = df["Patient age"].map(get_age_group)
+    df["Age_group"] = df[["Patient age lower", "Patient age upper"]].apply(
+        get_age_group, axis=1
+    )
     return df
 
 
@@ -301,6 +315,50 @@ def merge_vax(df, vax, enabled=True):
         return df
     _("Merging with vaccination data from OWID")
     return df.merge(read_vax(vax), on=["Country", "Week"])
+
+
+def is_bracketed(val):
+    return isinstance(val, str) and ("-" in val or "to" in val)
+
+
+def get_age_bracketed(age):
+    for sep in ["-", "to"]:
+        if sep in age:
+            with contextlib.suppress(ValueError):
+                al, au = list(map(float, age.split(sep)))
+                if al < au:
+                    return str(al), str(au)
+    return "", ""
+
+
+def fix_age_gender(age, gender):
+    if is_bracketed(age):
+        al, au = get_age_bracketed(age)
+        return al, au, gender
+    return age, age, gender
+
+
+def fix_age_gender_row(row):
+    age = row["Patient age"]
+    gender = row["Gender"]
+    if is_float(age):
+        return age, age, gender
+    if isinstance(age, str) and " years" in age.lower():
+        age = age.lower().replace(" years", "")
+    if isinstance(gender, str) and " years" in gender.lower():
+        gender = gender.lower().replace(" years", "")
+    if not is_float(age) and (is_float(gender) or is_bracketed(gender)):
+        return fix_age_gender(gender, age)
+    return fix_age_gender(age, gender)
+
+
+def fix_age_gender_data(df):
+    _("Fixing age and gender")
+    age_lower_upper_gender = list(df.apply(fix_age_gender_row, axis=1))
+    df["Patient age lower"] = [x[0] for x in age_lower_upper_gender]
+    df["Patient age upper"] = [x[1] for x in age_lower_upper_gender]
+    df["Gender"] = [x[2] for x in age_lower_upper_gender]
+    return df
 
 
 def get_start_dates(df, threshold_proportion=0.9):
@@ -404,6 +462,7 @@ if __name__ == "__main__":
         .pipe(filter_human_hosts)
         .pipe(parse_location)
         .pipe(filter_location, country=args.country, region=args.region)
+        .pipe(fix_age_gender_data)
         .pipe(filter_valid_age, enabled=args.age)
         .pipe(add_age_groups, enabled=(args.age and args.group))
         .pipe(check_collection_before_submission)
