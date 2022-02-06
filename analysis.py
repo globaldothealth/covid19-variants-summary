@@ -293,7 +293,7 @@ def add_age_groups(df, enabled=False):
         return df
     _("Add age groups")
     df["Age_group"] = df[["Patient age lower", "Patient age upper"]].apply(
-        get_age_group, axis=1
+        get_age_group_row, axis=1
     )
     return df
 
