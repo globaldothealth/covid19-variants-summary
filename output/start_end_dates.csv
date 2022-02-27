@@ -2,176 +2,220 @@ Country,Variant,Start,End,Threshold
 ARG,Alpha,,,0.9
 ARG,Beta,,,0.9
 ARG,Delta,202147,202149,0.9
-ARG,Omicron,202202,,0.9
+ARG,Omicron BA.1,,,0.9
+ARG,Omicron BA.2,,,0.9
 AUS,Alpha,,,0.9
 AUS,Beta,,,0.9
 AUS,Delta,202126,202150,0.9
-AUS,Omicron,202201,,0.9
+AUS,Omicron BA.1,,,0.9
+AUS,Omicron BA.2,,,0.9
 AUT,Alpha,,,0.9
 AUT,Beta,,,0.9
 AUT,Delta,,,0.9
-AUT,Omicron,,,0.9
+AUT,Omicron BA.1,,,0.9
+AUT,Omicron BA.2,,,0.9
 BEL,Alpha,,,0.9
 BEL,Beta,,,0.9
 BEL,Delta,202129,202149,0.9
-BEL,Omicron,202202,,0.9
+BEL,Omicron BA.1,,,0.9
+BEL,Omicron BA.2,,,0.9
 BOL,Alpha,,,0.9
 BOL,Beta,,,0.9
 BOL,Delta,202136,202137,0.9
-BOL,Omicron,,,0.9
+BOL,Omicron BA.1,,,0.9
+BOL,Omicron BA.2,,,0.9
 BRA,Alpha,,,0.9
 BRA,Beta,,,0.9
 BRA,Delta,202136,202137,0.9
-BRA,Omicron,202201,,0.9
+BRA,Omicron BA.1,,,0.9
+BRA,Omicron BA.2,,,0.9
 CAN,Alpha,,,0.9
 CAN,Beta,,,0.9
 CAN,Delta,202130,202149,0.9
-CAN,Omicron,202152,,0.9
+CAN,Omicron BA.1,,,0.9
+CAN,Omicron BA.2,,,0.9
 CHL,Alpha,,,0.9
 CHL,Beta,,,0.9
 CHL,Delta,202139,202149,0.9
-CHL,Omicron,202203,,0.9
+CHL,Omicron BA.1,,,0.9
+CHL,Omicron BA.2,,,0.9
 COL,Alpha,,,0.9
 COL,Beta,,,0.9
 COL,Delta,202144,202145,0.9
-COL,Omicron,202201,202202,0.9
+COL,Omicron BA.1,,,0.9
+COL,Omicron BA.2,,,0.9
 DEU,Alpha,202114,202121,0.9
 DEU,Beta,,,0.9
 DEU,Delta,202128,202150,0.9
-DEU,Omicron,202203,,0.9
+DEU,Omicron BA.1,,,0.9
+DEU,Omicron BA.2,,,0.9
 ESP,Alpha,,,0.9
 ESP,Beta,,,0.9
 ESP,Delta,202130,202149,0.9
-ESP,Omicron,202202,202204,0.9
+ESP,Omicron BA.1,,,0.9
+ESP,Omicron BA.2,,,0.9
 EST,Alpha,202114,202126,0.9
 EST,Beta,,,0.9
 EST,Delta,202126,202127,0.9
-EST,Omicron,,,0.9
+EST,Omicron BA.1,,,0.9
+EST,Omicron BA.2,,,0.9
 FRA,Alpha,,,0.9
 FRA,Beta,,,0.9
 FRA,Delta,202128,202150,0.9
-FRA,Omicron,202202,202205,0.9
+FRA,Omicron BA.1,,,0.9
+FRA,Omicron BA.2,,,0.9
 GBR,Alpha,202104,202117,0.9
 GBR,Beta,,,0.9
 GBR,Delta,202123,202149,0.9
-GBR,Omicron,202152,,0.9
+GBR,Omicron BA.1,,,0.9
+GBR,Omicron BA.2,,,0.9
 GRC,Alpha,202109,202112,0.9
 GRC,Beta,,,0.9
 GRC,Delta,202129,202130,0.9
-GRC,Omicron,202151,,0.9
+GRC,Omicron BA.1,,,0.9
+GRC,Omicron BA.2,,,0.9
 HND,Alpha,,,0.9
 HND,Beta,,,0.9
-HND,Delta,202130,,0.9
-HND,Omicron,,,0.9
+HND,Delta,202130,202134,0.9
+HND,Omicron BA.1,,,0.9
+HND,Omicron BA.2,,,0.9
 IDN,Alpha,,,0.9
 IDN,Beta,,,0.9
 IDN,Delta,202125,202151,0.9
-IDN,Omicron,202203,,0.9
+IDN,Omicron BA.1,,,0.9
+IDN,Omicron BA.2,,,0.9
 IND,Alpha,,,0.9
 IND,Beta,,,0.9
 IND,Delta,202123,202124,0.9
-IND,Omicron,202202,,0.9
+IND,Omicron BA.1,,,0.9
+IND,Omicron BA.2,,,0.9
 IRL,Alpha,202108,202114,0.9
 IRL,Beta,,,0.9
 IRL,Delta,202128,202149,0.9
-IRL,Omicron,202152,,0.9
+IRL,Omicron BA.1,,,0.9
+IRL,Omicron BA.2,,,0.9
 ISR,Alpha,202109,202113,0.9
 ISR,Beta,,,0.9
 ISR,Delta,202125,202126,0.9
-ISR,Omicron,202201,,0.9
+ISR,Omicron BA.1,,,0.9
+ISR,Omicron BA.2,,,0.9
 ITA,Alpha,,,0.9
 ITA,Beta,,,0.9
 ITA,Delta,202129,202150,0.9
-ITA,Omicron,202203,,0.9
+ITA,Omicron BA.1,,,0.9
+ITA,Omicron BA.2,,,0.9
 JPN,Alpha,202119,202124,0.9
 JPN,Beta,,,0.9
 JPN,Delta,202132,202150,0.9
-JPN,Omicron,202202,,0.9
+JPN,Omicron BA.1,,,0.9
+JPN,Omicron BA.2,,,0.9
 KEN,Alpha,,,0.9
 KEN,Beta,,,0.9
 KEN,Delta,202126,202147,0.9
-KEN,Omicron,202151,202152,0.9
+KEN,Omicron BA.1,,,0.9
+KEN,Omicron BA.2,,,0.9
 KWT,Alpha,202103,202105,0.9
 KWT,Beta,,,0.9
 KWT,Delta,202125,202135,0.9
-KWT,Omicron,,,0.9
+KWT,Omicron BA.1,,,0.9
+KWT,Omicron BA.2,,,0.9
 LAO,Alpha,,,0.9
 LAO,Beta,,,0.9
 LAO,Delta,,,0.9
-LAO,Omicron,,,0.9
+LAO,Omicron BA.1,,,0.9
+LAO,Omicron BA.2,,,0.9
 MWI,Alpha,,,0.9
 MWI,Beta,202112,202115,0.9
 MWI,Delta,202121,202123,0.9
-MWI,Omicron,202148,,0.9
+MWI,Omicron BA.1,202148,,0.9
+MWI,Omicron BA.2,,,0.9
 MYS,Alpha,,,0.9
 MYS,Beta,,,0.9
 MYS,Delta,202127,202129,0.9
-MYS,Omicron,202203,,0.9
+MYS,Omicron BA.1,,,0.9
+MYS,Omicron BA.2,,,0.9
 NLD,Alpha,202112,202122,0.9
 NLD,Beta,,,0.9
 NLD,Delta,202128,202150,0.9
-NLD,Omicron,202202,,0.9
+NLD,Omicron BA.1,,,0.9
+NLD,Omicron BA.2,,,0.9
 NOR,Alpha,202112,202123,0.9
 NOR,Beta,,,0.9
 NOR,Delta,202130,202148,0.9
-NOR,Omicron,202202,,0.9
+NOR,Omicron BA.1,,,0.9
+NOR,Omicron BA.2,,,0.9
 NPL,Alpha,,,0.9
 NPL,Beta,,,0.9
 NPL,Delta,202116,202117,0.9
-NPL,Omicron,202202,,0.9
+NPL,Omicron BA.1,,,0.9
+NPL,Omicron BA.2,,,0.9
 NZL,Alpha,,,0.9
 NZL,Beta,,,0.9
 NZL,Delta,202127,202150,0.9
-NZL,Omicron,202204,,0.9
+NZL,Omicron BA.1,,,0.9
+NZL,Omicron BA.2,,,0.9
 PAK,Alpha,202110,202115,0.9
 PAK,Beta,,,0.9
 PAK,Delta,202128,202129,0.9
-PAK,Omicron,202201,202202,0.9
+PAK,Omicron BA.1,,,0.9
+PAK,Omicron BA.2,,,0.9
 PER,Alpha,,,0.9
 PER,Beta,,,0.9
 PER,Delta,202141,202150,0.9
-PER,Omicron,,,0.9
+PER,Omicron BA.1,,,0.9
+PER,Omicron BA.2,,,0.9
 PHL,Alpha,,,0.9
 PHL,Beta,,,0.9
 PHL,Delta,202133,202147,0.9
-PHL,Omicron,202147,,0.9
+PHL,Omicron BA.1,202149,202150,0.9
+PHL,Omicron BA.2,202201,202203,0.9
 POL,Alpha,202111,202123,0.9
 POL,Beta,,,0.9
 POL,Delta,202129,202152,0.9
-POL,Omicron,202204,,0.9
+POL,Omicron BA.1,,,0.9
+POL,Omicron BA.2,,,0.9
 PRT,Alpha,202113,202115,0.9
 PRT,Beta,,,0.9
 PRT,Delta,202127,202150,0.9
-PRT,Omicron,202202,,0.9
+PRT,Omicron BA.1,,,0.9
+PRT,Omicron BA.2,,,0.9
 QAT,Alpha,,,0.9
 QAT,Beta,,,0.9
 QAT,Delta,202130,202149,0.9
-QAT,Omicron,202152,,0.9
+QAT,Omicron BA.1,,,0.9
+QAT,Omicron BA.2,,,0.9
 ROU,Alpha,202107,202108,0.9
 ROU,Beta,,,0.9
 ROU,Delta,202130,202150,0.9
-ROU,Omicron,202202,,0.9
+ROU,Omicron BA.1,,,0.9
+ROU,Omicron BA.2,,,0.9
 RUS,Alpha,,,0.9
 RUS,Beta,,,0.9
 RUS,Delta,202123,202148,0.9
-RUS,Omicron,,,0.9
+RUS,Omicron BA.1,,,0.9
+RUS,Omicron BA.2,,,0.9
 SAU,Alpha,202114,202115,0.9
 SAU,Beta,202128,202129,0.9
 SAU,Delta,202126,202128,0.9
-SAU,Omicron,202151,,0.9
+SAU,Omicron BA.1,,,0.9
+SAU,Omicron BA.2,,,0.9
 TUR,Alpha,202115,202117,0.9
 TUR,Beta,,,0.9
 TUR,Delta,202126,202128,0.9
-TUR,Omicron,202201,,0.9
+TUR,Omicron BA.1,202203,202204,0.9
+TUR,Omicron BA.2,,,0.9
 UKR,Alpha,202111,202119,0.9
 UKR,Beta,,,0.9
 UKR,Delta,202130,202151,0.9
-UKR,Omicron,202151,,0.9
+UKR,Omicron BA.1,,,0.9
+UKR,Omicron BA.2,,,0.9
 USA,Alpha,,,0.9
 USA,Beta,,,0.9
 USA,Delta,202129,202150,0.9
-USA,Omicron,202201,,0.9
+USA,Omicron BA.1,,,0.9
+USA,Omicron BA.2,,,0.9
 ZAF,Alpha,,,0.9
 ZAF,Beta,202108,202110,0.9
 ZAF,Delta,202128,202129,0.9
-ZAF,Omicron,202147,,0.9
+ZAF,Omicron BA.1,,,0.9
+ZAF,Omicron BA.2,202206,,0.9
