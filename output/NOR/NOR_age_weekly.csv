@@ -1,4 +1,4 @@
-Country,Week,Alpha,Beta,Delta,Omicron,Other_variants,Total
-NOR,202012,0,0,0,0,1,1
-NOR,202038,0,0,0,0,1,1
-NOR,202039,0,0,0,0,1,1
+Country,Week,Alpha,Beta,Delta,Omicron BA.1,Omicron BA.2,Other_variants,Total
+NOR,202012,0,0,0,0,0,1,1
+NOR,202038,0,0,0,0,0,1,1
+NOR,202039,0,0,0,0,0,1,1

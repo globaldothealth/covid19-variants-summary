@@ -1,7 +1,7 @@
-Country,Week,Alpha,Beta,Delta,Omicron,Other_variants,Total
-NZL,202010,0,0,0,0,1,1
-NZL,202011,0,0,0,0,1,1
-NZL,202012,0,0,0,0,2,2
-NZL,202013,0,0,0,0,6,6
-NZL,202014,0,0,0,0,4,4
-NZL,202015,0,0,0,0,1,1
+Country,Week,Alpha,Beta,Delta,Omicron BA.1,Omicron BA.2,Other_variants,Total
+NZL,202010,0,0,0,0,0,1,1
+NZL,202011,0,0,0,0,0,1,1
+NZL,202012,0,0,0,0,0,2,2
+NZL,202013,0,0,0,0,0,6,6
+NZL,202014,0,0,0,0,0,4,4
+NZL,202015,0,0,0,0,0,1,1
