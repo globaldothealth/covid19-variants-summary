@@ -1,20 +1,20 @@
 ARG	F	Female	IND	Male	Maria	Na	unknow	unknown
 AUS	Female	Male	O	Other	U	unknown
 AUT	Female	M	Male	Unknown	unknown
-BEL	?	F	Famale	Female	H	M	Ma+L9le	Male	V	male	unknown
+BEL	?	F	Famale	Female	H	M	Ma+L9le	Male	Maleale	V	male	unknown
 BOL	Female	Male	unknown	unkown
-BRA	A	D	FF	Famale	Female	FemaleFemale	FemaleMale	Feminino	I	Male	Male?	MaleMale	Masculino	Unknow	unknow	unknown	unkown
+BRA	A	D	F	FF	Famale	Female	FemaleFemale	FemaleMale	Feminino	I	Male	Male?	MaleMale	Masculino	Unknow	unknow	unknown	unkown
 CAN	Female	Male	Missing	Not Provided	Not provided	Refused	U	Unknown	unknown
 CHL	Female	Femele	Male	unknown
 COL	Female	Femenino	Hombre	Live	Male	Male0	Masculino	Mujer	nan	unknown
 EST	Female	Male	unknown
-FRA	?	A	B	EF	EG	FEMME	Femal	Female	Femaleemale	Féminin	H	HOMME	I	ME	MR	Male	Maleale	Masculin	N	U	Unknown	féminin	masculin	nan	not provided	u	unknown
+FRA	?	A	B	EF	EG	FEMME	Femal	Female	Femaleemale	Féminin	H	HOMME	I	ME	MR	Male	Maleale	Masculin	N	O	U	Unknown	féminin	masculin	nan	not provided	u	unknown
 DEU	Female	Human	Male	Unknown	Unkown	femle	unknown	unkown
 GRC	A	Female	Male	not provided	unknown
 HND	Female	Male	unknown
-IND	-	FFemale	FeM	Female	FemaleeMaleale	Fm	M	M.	Male	Maleale	O	Others	Transgender	Unknown	Unkown	nan	undefined	unknown	unknwon
+IND	-	26.0	FFemale	FeM	Female	FemaleeMaleale	Fm	M	M.	Male	Maleale	O	Others	Transgender	Unknown	Unkown	famale	nan	undefined	unknown	unknwon
 IDN	Female	Laki-Laki	Male	Perempuan	Reme	unknown
-IRL	F	Female	M	Make	Male	Not provided	U	not provided	unknown
+IRL	F	FALSE	Female	M	Make	Male	Not provided	U	not provided	unknown
 ISR	Female	Male	unknown
 ITA	14 days	FEMALEemale	Famale	Female	Femmina	M	Male	Male,	Maschio	Mlae	Unknown	Unkwon	nan	unknow	unknown
 JPN	Female	Male	unknown	unknwon	unkown
@@ -30,14 +30,14 @@ NOR	Female	Male	unknown
 PAK	Female	Femlae	Male	unknown
 PER	Female	Femenino	Male	Masculino	nan	unknown
 PHL	Female	Male	unknown
-POL	-	0	Fame	Famel	Female	Femaleobieta	K	Male	Male.	female.	unFnown	unknow	unknown
+POL	-	0	Fame	Famel	Female	Femaleobieta	Femlae	K	Male	Male.	female.	unFnown	unknow	unknown
 PRT	Female	Male	unknown
 ROU	Famale	Female	Male	Unknown	Unkown	unknown
 QAT	Female	Femle	Male	Mle	Unspecified	unknown
 RUS	Female	Male	unknown	Не установлено
 SAU	Female	Male	unknown
 ZAF	F	Female	Male	Maleale	U	Unknown	Unkown	female	unknown
-ESP	D	FLORENTINA	Famale	Female	H	Human	Male	N	U	female	male	nan	unknow	unknown
+ESP	D	Desconocido	FLORENTINA	Famale	Female	H	Human	Male	N	U	female	male	nan	unknow	unknown
 TUR	Female	Male	unknown
 UKR	Female	Male	unknown
 GBR	Female	Male	Unknown	unknown
