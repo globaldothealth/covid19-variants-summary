@@ -10,6 +10,7 @@ COL	Female	Femenino	Hombre	Live	Male	Male0	Masculino	Mujer	nan	unknown
 EST	Female	Male	unknown
 FRA	?	A	B	EF	EG	FEMME	Femal	Female	Femaleemale	Féminin	H	HOMME	I	ME	MR	Male	Maleale	Masculin	N	O	U	Unknown	féminin	masculin	nan	not provided	u	unknown
 DEU	Female	Human	Male	Unknown	Unkown	femle	unknown	unkown
+GHA	Female	Male	Na	unknown
 GRC	A	Female	Male	not provided	unknown
 HND	Female	Male	unknown
 IND	-	26.0	FFemale	FeM	Female	FemaleeMaleale	Fm	M	M.	Male	Maleale	O	Others	Transgender	Unknown	Unkown	famale	nan	undefined	unknown	unknwon
