@@ -22,7 +22,7 @@ WEEKLY = "weekly.csv"
 START_END_DATES = "start_end_dates.csv"
 
 # other constants
-VARIANTS = ["Alpha", "Beta", "Delta", "Omicron BA.1", "Omicron BA.2"]
+VARIANTS = ["Alpha", "Beta", "Delta", "Omicron"]
 GROUP_BY = ["Country", "Week"]
 
 
@@ -266,12 +266,8 @@ def gender_sets(df):
 
 
 def is_variant(variant):
-    def func(row):
-        if variant.startswith("Omicron"):
-            _, lineage = variant.split()
-            return isinstance(row['Pango lineage'], str) and row['Pango lineage'] == lineage
-        else:
-            return f"VOC {variant}" in row['Variant'] if isinstance(row['Variant'], str) else False
+    def func(v):
+        return f"VOC {variant}" in v if isinstance(v, str) else False
 
     return func
 
@@ -279,7 +275,7 @@ def is_variant(variant):
 def add_variant_columns(df):
     _("Adding variant columns")
     for v in VARIANTS:
-        df[v] = df[["Variant", "Pango lineage"]].apply(is_variant(v), axis=1)
+        df[v] = df.Variant.map(is_variant(v))
     df["Other_variants"] = ~df[VARIANTS].any(axis=1)
     df["Total"] = df[VARIANTS + ["Other_variants"]].sum(axis=1)
     return df
