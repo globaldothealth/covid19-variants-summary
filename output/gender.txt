@@ -13,7 +13,7 @@ DEU	Female	Human	Male	Unknown	Unkown	femle	unknown	unkown
 GHA	Female	Male	Na	unknown
 GRC	A	Female	Male	not provided	unknown
 HND	Female	Male	unknown
-IND	-	26.0	FFemale	FeM	Female	FemaleeMaleale	Fm	M	M.	Male	Maleale	O	Others	Transgender	Unknown	Unkown	famale	nan	undefined	unknown	unknwon
+IND	-	26.0	F	FEMLAE	FFemale	FeM	Female	FemaleeMaleale	Fm	M	M.	Male	Maleale	O	Others	Transgender	Unknown	Unkown	famale	nan	undefined	unknown	unknwon
 IDN	Female	Laki-Laki	Male	Perempuan	Reme	unknown
 IRL	F	FALSE	Female	M	Make	Male	Not provided	U	not provided	unknown
 ISR	Female	Male	unknown
@@ -31,7 +31,7 @@ NOR	Female	Male	unknown
 PAK	Female	Femlae	Male	unknown
 PER	Female	Femenino	Male	Masculino	nan	unknown
 PHL	Female	Male	unknown
-POL	-	0	Fame	Famel	Female	Femaleobieta	Femlae	K	Male	Male.	female.	unFnown	unknow	unknown
+POL	-	0	Fame	Famel	Female	Femaleobieta	Femlae	K	Male	Male.	female.	unFnown	unknow	unknown	unkown
 PRT	Female	Male	unknown
 ROU	Famale	Female	Male	Unknown	Unkown	unknown
 QAT	Female	Femle	Male	Mle	Unspecified	unknown
