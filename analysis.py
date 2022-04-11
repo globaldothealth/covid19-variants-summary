@@ -144,12 +144,9 @@ def to_epiweek(date):
         return None
 
 
-def check_collection_before_submission(df):
-    _("Check that collection date is before submission")
-    incorrect = df[df["Collection date"] > df["Submission date"]]
-    if not incorrect.empty:
-        print(incorrect)
-    assert incorrect.empty
+def filter_collection_before_submission(df):
+    _("Remove entries where collection date is after submission")
+    df = df[df["Collection date"] <= df["Submission date"]]
     return df
 
 
@@ -465,7 +462,7 @@ if __name__ == "__main__":
         .pipe(fix_age_gender_data)
         .pipe(filter_valid_age, enabled=args.age)
         .pipe(add_age_groups, enabled=(args.age and args.group))
-        .pipe(check_collection_before_submission)
+        .pipe(filter_collection_before_submission)
     )
     if args.country is None:
         calculate_completeness(df).to_csv(OUTPUT / COMPLETENESS)
