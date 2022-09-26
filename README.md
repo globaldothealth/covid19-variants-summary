@@ -1,6 +1,6 @@
 # COVID-19 variants summary
 
-This code summarises data from GISAID by epiweek. Outputs and analyses are published in Gonçalves et al. eLife 2022;11:e80556. DOI: https://doi.org/10.7554/eLife.80556 
+This code summarises data from GISAID by epiweek. Outputs and analyses using these data are published in Gonçalves et al. eLife 2022;11:e80556. DOI: https://doi.org/10.7554/eLife.80556 
 
 [![tests](https://github.com/globaldothealth/covid19-variants-summary/actions/workflows/tests.yml/badge.svg)](https://github.com/globaldothealth/covid19-variants-summary/actions/workflows/tests.yml)
 
