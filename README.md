@@ -3,6 +3,8 @@
 This code summarises data from GISAID by epiweek. Outputs and analyses using these data are published in Gonçalves et al. eLife 2022;11:e80556. DOI: https://doi.org/10.7554/eLife.80556 
 
 [![tests](https://github.com/globaldothealth/covid19-variants-summary/actions/workflows/tests.yml/badge.svg)](https://github.com/globaldothealth/covid19-variants-summary/actions/workflows/tests.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7195830.svg)](https://doi.org/10.5281/zenodo.7195830)
+
 
 ## Requirements
 
