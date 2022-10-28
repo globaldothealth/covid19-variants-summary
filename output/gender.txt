@@ -1,45 +1,45 @@
 ARG	F	Female	IND	Male	Maria	Na	unknow	unknown
 AUS	Female	Male	O	Other	U	unknown
-AUT	Female	M	Male	Unknown	unknown
+AUT	Female	M	Male	Unknown	nan	unknown	unkown
 BEL	?	F	Famale	Female	H	M	Ma+L9le	Male	Maleale	V	male	unknown
 BOL	Female	Male	unknown	unkown
 BRA	A	D	FF	Famale	Female	FemaleFemale	FemaleMale	Feminino	I	Male	Male?	MaleMale	Masculino	Unknow	unknow	unknown	unkown
 CAN	Female	Male	Missing	Not Provided	Not provided	Refused	U	Unknown	unknown
-CHL	FF	Female	Femele	Male	unknown
-COL	Female	Femenino	Hombre	Live	Male	Male0	Masculino	Mujer	nan	unknown
+CHL	FF	Female	Femele	Male	Sentinel surveillance (SARI)	unknown
+COL	---	Female	Femenino	Hombre	Live	Male	Male0	Masculino	Mujer	nan	unknown
 EST	Female	Male	unknown
-FRA	?	A	B	EF	EG	FEMME	Femal	Female	Femaleemale	Féminin	H	HOMME	I	ME	MR	Male	Maleale	Masculin	N	O	U	Unknown	féminin	masculin	nan	not collected	not provided	u	unknow	unknown
-DEU	Female	Human	Male	Unknown	Unkown	femle	unknown	unkown
+FRA	?	A	B	EF	EG	FEMME	Femal	Female	Femaleemale	Féminin	H	HOMME	I	ME	MR	Male	Maleale	Masculin	N	O	U	Unknown	féminin	hermaphrodite	masculin	nan	neuter	not collected	not provided	u	unknow	unknown
+DEU	Female	Human	Male	Nak	Unknown	Unkown	femle	unknown	unkown
 GHA	Female	Male	Na	unknown
-GRC	A	Female	Male	not provided	unknown
+GRC	A	Female	Male	nan	not provided	unknown
 HND	Female	Male	unknown
-IND	-	26.0	F	FEMLAE	FFemale	FeM	Female	FemaleeMaleale	Fm	M	M.	Male	Maleale	Not Known	O	Others	Transgender	Unknown	Unkown	famale	nan	undefined	unknown	unknwon
-IDN	Female	Laki-Laki	Male	Perempuan	Reme	unknown
+IND	-	10 months	26.0	4 months	5 months	7 months	F	FEMLAE	FFEMALE	FFemale	FeM	Female	FemaleeMaleale	Fm	M	M.	Male	Maleale	Not Known	O	Others	Tg	Transgender	Unknown	Unkown	famale	nan	undefined	unknown	unknwon
+IDN	Femae	Female	Laki-Laki	Male	Perempuan	Reme	unknown
 IRL	F	FALSE	Female	M	Make	Male	Not provided	U	not provided	unknown
 ISR	Female	Male	unknown
-ITA	14 days	FEMALEemale	Famale	Female	Femmina	M	Male	Male,	Maschio	Mlae	Unknown	Unkwon	nan	unknow	unknown
+ITA	14 days	FEMALEemale	Famale	Female	Femmina	M	Male	Male,	Maschio	Mlae	N	Unknown	Unkwon	nan	unknow	unknown
 JPN	Female	Male	unknown	unknwon	unkown
 KEN	?	Female	Male	nan	unknown	unkown
 KWT	Baby of	Femal	Female	Male	unknown
 LAO	Female	Male	unknown
 MWI	Female	Male	unknown
-MYS	Feamle	Female	Male	unknown
+MYS	Feamle	Female	Lelaki	MAE	Male	Perempuan	unknown
 NPL	Female	Male	Other	unknown
 NLD	Female	Male	O	nan	unknown
-NZL	Female	Male	unknown
+NZL	Female	Male	Other	unknown
 NOR	Female	Male	unknown
-PAK	Female	Femlae	Male	unknown
-PER	Female	Femenino	Male	Masculino	nan	unknown
+PAK	D	Female	Femlae	Male	unknown
+PER	Famale	Female	Femenino	Male	Masculino	nan	unknown
 PHL	Female	Male	unknown
-POL	-	0	Fame	Famel	Female	Femaleobieta	Femlae	K	Male	Male.	female.	unFnown	unk	unknow	unknown	unkown
+POL	-	0	Fame	Famel	Female	Femaleobieta	Femlae	K	Male	Male.	Unknow	female.	unFnown	unk	unknow	unknown	unkown
 PRT	Female	Male	unknown
 ROU	Famale	Female	Male	Unknown	Unkown	check	unknown
 QAT	Female	Femle	Male	Mle	Unspecified	unknown
 RUS	Female	Male	unknown	Не установлено
 SAU	Female	Male	unknown
-ZAF	F	Female	Male	Maleale	U	Unknown	Unkown	female	unknown
-ESP	2 days	D	Desconocido	FLORENTINA	Famale	Female	H	Hombre	Human	Male	Mujer	N	U	female	male	nan	unknow	unknown
+ZAF	F	Female	Femle	Male	Maleale	U	Unknown	Unkown	female	unknown	unkown
+ESP	*	2 days	?	D	Desconocido	Dona	FLORENTINA	Famale	Female	H	Hombre	Home	Human	Male	Mujer	N	U	female	male	nan	unknow	unknown
 TUR	Female	Male	unknown
 UKR	Female	Male	unknown
 GBR	Female	Male	Unknown	unknown
-USA	0	0.0	0.00	1/0/1900	11 months	21 months	22 months	3 months	9 months	?	Ambiguous	Declined to answer	F	FeMale	Fema;e	Femal	Female	Female)	Femlae	Femle	Hermaphrodite	Human	M>F	Mae	Male	Mlae	N	N/a	ND	NG	Na	Nasopharyngeal Swab"	Non-binary	Not Listed	Not applicable	O	OTHER	Other	Transgender	U	UNK	UNKNOWN / NOT STATED	Unk	Unk.	Unknown	Unknown / Not Stated	Unknown / not stated	Unknown/Not Reported	Unknown/not stated	Unkown	Unwkown	Y	decline	declined to answer	demale	female	hermaphrodite	male	missing	mm	nan	non-binary	non_binary	other	transsexual	unkmown	unknow	unknow/not stated	unknown	unknown / not stated	unknown/not stated	unknwon	unkown
+USA	-	0	0.0	0.00	1/0/1900	11 months	21 months	22 months	3 months	9 months	>90	?	Ambiguous	B	Declined to answer	F	F/M	FMale	FeMale	Fema;e	Femal	Female	Female)	FemaleTMale	Femlae	Femle	Hermaphrodite	Human	M>F	Mae	Male	MaleTFemale	Mlae	Mtf	N	N/a	ND	NG	Na	Nasopharyngeal Swab"	Non-Binary	Non-binary	Not Listed	Not applicable	O	OTHER	Other	Transgender	U	UNK	UNKNOWN / NOT STATED	Unidentified	Unk	Unk.	Unknown	Unknown / Not Stated	Unknown / not stated	Unknown [3]	Unknown/Not Reported	Unknown/not stated	Unkown	Unwkown	W	X	Y	decline	declined to answer	demale	female	hermaphrodite	male	missing	mm	nan	non-binary	non_binary	other	transsexual	unkmown	unknow	unknow/not stated	unknown	unknown / not stated	unknown/not stated	unknwon	unkown
