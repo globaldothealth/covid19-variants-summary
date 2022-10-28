@@ -311,7 +311,7 @@ def merge_vax(df, vax, enabled=True):
     if not enabled:
         return df
     _("Merging with vaccination data from OWID")
-    return df.merge(read_vax(vax), on=["Country", "Week"])
+    return df.merge(read_vax(vax), on=["Country", "Week"], how="left")
 
 
 def is_bracketed(val):
